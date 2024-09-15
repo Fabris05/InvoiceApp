@@ -1,12 +1,14 @@
-export const ClientView = ({client}) => {
-    
-    const { name: nameClient, lastName, address } = client; // con los ':' le damos un alias al atributo
+import PropTypes from 'prop-types';
 
-    const { country, city, street, number } = client.address; // Sub atributos de la direccion del cliente
+export const ClientView = ({tittle, client}) => {
+    
+    const { name: nameClient, 
+        lastName, 
+        address: {country, city, street, number} } = client; // con los ':' le damos un alias al atributo
     
     return(
         <>
-            <h3>Datos del Cliente</h3>
+            <h3> {tittle} </h3>
             <ul className="list-group">
                 <li className="list-group-item active">{nameClient}</li>
                 <li className="list-group-item">{lastName}</li>
@@ -19,4 +21,9 @@ export const ClientView = ({client}) => {
             </ul>
         </>
     )
+}
+
+ClientView.propTypes = {
+    tittle: PropTypes.string.isRequired,
+    client: PropTypes.object.isRequired
 }
